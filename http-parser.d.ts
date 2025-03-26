@@ -75,7 +75,7 @@ export type OnHeadersCompleteParser<HEADER = HeaderObject, Mode_0_12 extends boo
     upgrade: boolean,
     shouldKeepAlive: boolean,
   )=> number | void
-export type OnBodyParser = (chunk: Buffer, offset: number, length: number)=> void
+export type OnBodyParser = (chunk: Uint8Array, offset: number, length: number)=> void
 // Only called in the slow case where slow means
 // that the request headers were either fragmented
 // across multiple TCP packets or too large to be
@@ -100,7 +100,7 @@ declare class HTTPParserJS {
   private _compatMode0_11: false | boolean
   getAsyncId: noop<0>
 
-  execute(chunk: Buffer, start?: number, length?: number): number | Error
+  execute(chunk: Uint8Array, start?: number, length?: number): number | Error
   finish(): void | Error
 
   // These three methods are used for an internal speed optimization, and it also

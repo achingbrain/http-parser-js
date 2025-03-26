@@ -1,3 +1,5 @@
+> This is a fork of `http-parser-js` without the dependency on `node:buffer` and converted to ESM
+
 ![Node](https://github.com/creationix/http-parser-js/workflows/Node/badge.svg)
 ![Node-v12](https://github.com/creationix/http-parser-js/workflows/Node-v12/badge.svg)
 

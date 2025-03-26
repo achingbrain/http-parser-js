@@ -34,6 +34,7 @@ function test(statusCode, next) {
       });
 
       conn.on('end', common.mustCall(function() {
+        console.info(resp)
         assert.equal(/^Connection: close\r\n$/m.test(resp), true);
         assert.equal(/^0\r\n$/m.test(resp), false);
         if (next) process.nextTick(next);

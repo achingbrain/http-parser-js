@@ -287,7 +287,13 @@ var knownGlobals = [setTimeout,
                     constructor, // Enumerable in V8 3.21.
                     Buffer,
                     process,
-                    global];
+                    global,
+                    structuredClone,
+                    atob,
+                    btoa,
+                    fetch,
+                    crypto,
+                    navigator];
 
 if (global.gc) {
   knownGlobals.push(global.gc);

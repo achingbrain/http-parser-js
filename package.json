@@ -1,12 +1,19 @@
 {
-  "name": "http-parser-js",
+  "name": "@achingbrain/http-parser-js",
   "version": "0.5.8",
-  "description": "A pure JS HTTP parser for node.",
+  "description": "A pure JS HTTP parser",
   "main": "http-parser.js",
   "types": "http-parser.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./http-parser.d.ts",
+      "import": "./http-parser.js"
+    }
+  },
   "scripts": {
-    "test": "python tests/test.py && node tests/iojs/test-http-parser-durability.js",
-    "testv12": "python tests/test.py --node-args=\"--http-parser=legacy\" && node --http-parser=legacy tests/iojs/test-http-parser-durability.js"
+    "test": "python2 tests/test.py && node tests/iojs/test-http-parser-durability.js",
+    "testv12": "python2 tests/test.py --node-args=\"--http-parser=legacy\" && node --http-parser=legacy tests/iojs/test-http-parser-durability.js"
   },
   "repository": {
     "type": "git",
@@ -26,5 +33,8 @@
     "Jan Schär (https://github.com/jscissr)",
     "Paul Rütter (https://github.com/paulrutter)"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "uint8arrays": "^5.1.0"
+  }
 }

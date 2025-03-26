@@ -1,7 +1,8 @@
 /*jshint node:true */
 
-exports.HTTPParser = HTTPParser;
-function HTTPParser(type) {
+import { toString as uint8ArrayToString } from 'uint8arrays/to-string'
+
+export function HTTPParser(type) {
   if (type !== undefined && type !== HTTPParser.REQUEST && type !== HTTPParser.RESPONSE) {
     throw new Error('type must be REQUEST or RESPONSE');
   }
@@ -59,7 +60,7 @@ Object.defineProperty(HTTPParser, 'kOnExecute', {
     }
   });
 
-var methods = exports.methods = HTTPParser.methods = [
+export const methods = HTTPParser.methods = [
   'DELETE',
   'GET',
   'HEAD',
@@ -192,7 +193,7 @@ HTTPParser.prototype.consumeLine = function () {
       chunk = this.chunk;
   for (var i = this.offset; i < end; i++) {
     if (chunk[i] === 0x0a) { // \n
-      var line = this.line + chunk.toString(HTTPParser.encoding, this.offset, i);
+      var line = this.line + uint8ArrayToString(chunk.subarray(this.offset, i), HTTPParser.encoding);
       if (line.charAt(line.length - 1) === '\r') {
         line = line.substr(0, line.length - 1);
       }
@@ -202,7 +203,7 @@ HTTPParser.prototype.consumeLine = function () {
     }
   }
   //line split over multiple chunks
-  this.line += chunk.toString(HTTPParser.encoding, this.offset, this.end);
+  this.line += uint8ArrayToString(chunk.subarray(this.offset, this.end), HTTPParser.encoding);
   this.offset = this.end;
 };
 
